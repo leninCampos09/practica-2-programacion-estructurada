@@ -1,5 +1,3 @@
-//Crear un programa que reciba un número y lo devuelva con sus cifras invertidas.
-
 import readline from 'readline';
 
 const rl = readline.createInterface({
@@ -8,8 +6,18 @@ const rl = readline.createInterface({
 });
 
 rl.question('Introduce un número: ', (entrada) => {
-  const numero = parseInt(entrada);
-  const invertido = parseInt(numero.toString().split('').reverse().join(''));
-  console.log('Número invertido:', invertido);
+  let numero = parseInt(entrada);
+  let invertido = 0;
+
+  const signo = Math.sign(numero);
+  numero = Math.abs(numero);
+
+  while (numero > 0) {
+    const digito = numero % 10;
+    invertido = invertido * 10 + digito;
+    numero = Math.floor(numero / 10);
+  }
+
+  console.log('Número invertido:', invertido * signo);
   rl.close();
 });
